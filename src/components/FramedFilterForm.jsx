@@ -45,7 +45,7 @@ const FramedFilterForm = () => {
 
         <div className="mb-4">
           <label>
-            <span>Upišite širinu kazetnog filtera</span>
+            <span>Upišite širinu kazetnog filtera:</span>
             <input
               className="w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-indigo-500"
               required
@@ -59,7 +59,7 @@ const FramedFilterForm = () => {
 
         <div className="mb-4">
           <label>
-            <span>Upišite dubinu kazetnog filtera</span>
+            <span>Upišite dubinu kazetnog filtera:</span>
             <input
               className=" w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-indigo-500"
               required
