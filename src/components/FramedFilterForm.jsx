@@ -33,7 +33,7 @@ const FramedFilterForm = () => {
           <label>
             <span>Upišite visinu kazetnog filtera:</span>
             <input
-              className="w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-indigo-500"
+              className="w-64 md:w-96 block border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-indigo-500"
               required
               type="number"
               placeholder="592"
@@ -47,7 +47,7 @@ const FramedFilterForm = () => {
           <label>
             <span>Upišite širinu kazetnog filtera:</span>
             <input
-              className="w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-indigo-500"
+              className="w-64 md:w-96 block border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-indigo-500"
               required
               type="number"
               placeholder="287"
@@ -61,7 +61,7 @@ const FramedFilterForm = () => {
           <label>
             <span>Upišite dubinu kazetnog filtera:</span>
             <input
-              className=" w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-indigo-500"
+              className="w-64 md:w-96 block border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-indigo-500"
               required
               type="number"
               placeholder="98"
