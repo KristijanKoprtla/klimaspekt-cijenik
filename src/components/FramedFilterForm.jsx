@@ -1,27 +1,81 @@
 import { useState } from "react";
 
+const squaredPriceFilc = 14.46;
+const squaredPriceLim = 12.5;
+const squaredPriceRabicZica = 12;
+const izradaPoKomadu = 20;
+const prostorPoKomadu = 19.83;
+
 const FramedFilterForm = () => {
-  const [number1, setNumber1] = useState("");
-  const [number2, setNumber2] = useState("");
-  const [number3, setNumber3] = useState("");
+  const [heightFilter, setHeightFilter] = useState("");
+  const [widthFilter, setWidthFilter] = useState("");
+  const [depthFilter, setDepthFilter] = useState("");
 
   const [result, setResult] = useState("");
+  const resultEUR = result / 7.53
+  const resultEURPDV = resultEUR + (resultEUR * 0.25)
+
+  const pHeightFilter = parseFloat(heightFilter);
+  const pWidthFilter = parseFloat(widthFilter);
+  const pDepthFilter = parseFloat(depthFilter);
+
+  const priceFilc = () => {
+    const cijenaFilca48 =
+      ((pHeightFilter + 23) / 1000) * (pWidthFilter * 2 * 0.001);
+    const cijenaFilca98 =
+      ((pHeightFilter + 23) / 1000) * (pWidthFilter * 3 * 0.001);
+    if (depthFilter < 51) {
+      return cijenaFilca48 * squaredPriceFilc;
+    } else if (depthFilter > 51) {
+      return cijenaFilca98 * squaredPriceFilc;
+    }
+  };
+
+  const priceLim = () => {
+    const cijenaLima = (pHeightFilter + pWidthFilter) * 2;
+
+    if (depthFilter < 51) {
+      return (((cijenaLima * 3.04) / 10) * squaredPriceLim) / 1000;
+    } else if (depthFilter > 51) {
+      return (((cijenaLima * 5.01) / 10) * squaredPriceLim) / 1000;
+    }
+  };
+
+  const priceRabicZica = () => {
+    const rabicZica48 =
+      (pHeightFilter / 1000) * ((pWidthFilter * 2) / 1000) * 2;
+    const rabicZica98 =
+      (pHeightFilter / 1000) * ((pWidthFilter * 2) / 1000) * 3;
+    if (depthFilter < 51) {
+      return rabicZica48 * squaredPriceRabicZica;
+    } else if (depthFilter > 51) {
+      return rabicZica98 * squaredPriceRabicZica;
+    }
+  };
 
   const handleCalculate = (e) => {
     e.preventDefault();
-    const num1 = parseFloat(number1);
-    const num2 = parseFloat(number2);
-    const calculateResult = num1 + num2;
+
+    // tu ide finalni izracun
+    const calculateResult =
+      priceFilc() +
+      priceLim() +
+      priceRabicZica() +
+      izradaPoKomadu +
+      prostorPoKomadu;
     setResult(
       calculateResult % 1 === 0
         ? calculateResult.toFixed(0)
         : calculateResult.toFixed(2)
     );
+    console.log("cijena filca je: ", priceFilc());
+    console.log("cijena lima je", priceLim());
+    console.log("cijena zice je", priceRabicZica());
 
     // reset the form
-    setNumber1("");
-    setNumber2("");
-    setNumber3("");
+    setHeightFilter("");
+    setWidthFilter("");
+    setDepthFilter("");
   };
   return (
     <>
@@ -37,8 +91,8 @@ const FramedFilterForm = () => {
               required
               type="number"
               placeholder="592"
-              onChange={(e) => setNumber1(e.target.value)}
-              value={number1}
+              onChange={(e) => setHeightFilter(e.target.value)}
+              value={heightFilter}
             />
           </label>
         </div>
@@ -51,8 +105,8 @@ const FramedFilterForm = () => {
               required
               type="number"
               placeholder="287"
-              onChange={(e) => setNumber2(e.target.value)}
-              value={number2}
+              onChange={(e) => setWidthFilter(e.target.value)}
+              value={widthFilter}
             />
           </label>
         </div>
@@ -65,8 +119,8 @@ const FramedFilterForm = () => {
               required
               type="number"
               placeholder="98"
-              onChange={(e) => setNumber3(e.target.value)}
-              value={number3}
+              onChange={(e) => setDepthFilter(e.target.value)}
+              value={depthFilter}
             />
           </label>
         </div>
@@ -87,7 +141,7 @@ const FramedFilterForm = () => {
               animationTimingFunction: "ease-in-out",
             }}
           >
-            Cijena: {result} HRK
+            Cijena bez PDV: {result} HRK
           </p>
         )}
         {result && (
@@ -99,7 +153,19 @@ const FramedFilterForm = () => {
               animationTimingFunction: "ease-in-out",
             }}
           >
-            Cijena: {(result / 7.53).toFixed(2)} EUR
+            Cijena bez PDV: {resultEUR.toFixed(2)} EUR
+          </p>
+        )}
+        {result && (
+          <p
+            className="transition-opacity animate-fade-in font-semibold"
+            style={{
+              animationName: "fade-in",
+              animationDuration: "600ms",
+              animationTimingFunction: "ease-in-out",
+            }}
+          >
+            Cijena sa PDV: {resultEURPDV.toFixed(2)} EUR
           </p>
         )}
       </form>

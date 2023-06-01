@@ -3,11 +3,12 @@ import Select from 'react-select'
 
 
 const categories = [
-  {value: 'g4', label: 'G4'},
-  {value: 'f5', label: 'F5'},
-  {value: 'f6', label: 'F6'},
-  {value: 'f7', label: 'F7'},
-  {value: 'f9', label: 'F9'},
+  {value: 10, label: 'G4'},
+  {value: 11, label: 'F5'},
+  {value: 11.50, label: 'F6'},
+  {value: 12, label: 'F7'},
+  {value: 12.50, label: 'F8'},
+  {value: 13, label: 'F9'},
 ]
 
 const BagFilterForm = () => {
