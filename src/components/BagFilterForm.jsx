@@ -147,6 +147,7 @@ const BagFilterForm = () => {
               value={category}
               onChange={(option) => setCategory(option)}
               options={categories}
+              required
             />
           </label>
         </div>
