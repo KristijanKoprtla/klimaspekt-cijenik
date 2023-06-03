@@ -1,10 +1,10 @@
 import { useState } from "react";
 
 const squaredPriceFilc = 14.46;
-const squaredPriceLim = 12.5;
-const squaredPriceRabicZica = 12;
+const squaredPriceLim = 12.50;
+const squaredPriceRabicZica = 12.00;
 const izradaPoKomadu = 20;
-const prostorPoKomadu = 19.83;
+
 
 const FramedFilterForm = () => {
   const [heightFilter, setHeightFilter] = useState("");
@@ -17,13 +17,13 @@ const FramedFilterForm = () => {
 
   const pHeightFilter = parseFloat(heightFilter);
   const pWidthFilter = parseFloat(widthFilter);
-  const pDepthFilter = parseFloat(depthFilter);
+
 
   const priceFilc = () => {
     const cijenaFilca48 =
-      ((pHeightFilter + 23) / 1000) * (pWidthFilter * 2 * 0.001);
+      ((pHeightFilter + 23) / 1000) * (pWidthFilter * 1.9 * 0.001);
     const cijenaFilca98 =
-      ((pHeightFilter + 23) / 1000) * (pWidthFilter * 3 * 0.001);
+      ((pHeightFilter + 23) / 1000) * (pWidthFilter * 2.7 * 0.001);
     if (depthFilter < 51) {
       return cijenaFilca48 * squaredPriceFilc;
     } else if (depthFilter > 51) {
@@ -43,9 +43,9 @@ const FramedFilterForm = () => {
 
   const priceRabicZica = () => {
     const rabicZica48 =
-      (pHeightFilter / 1000) * ((pWidthFilter * 2) / 1000) * 2;
+      (pHeightFilter / 1000) * ((pWidthFilter * 2) / 1000) * 1.9;
     const rabicZica98 =
-      (pHeightFilter / 1000) * ((pWidthFilter * 2) / 1000) * 3;
+      (pHeightFilter / 1000) * ((pWidthFilter * 2) / 1000) * 2.7;
     if (depthFilter < 51) {
       return rabicZica48 * squaredPriceRabicZica;
     } else if (depthFilter > 51) {
@@ -53,8 +53,12 @@ const FramedFilterForm = () => {
     }
   };
 
+  const materijalSaRadom = priceFilc() + priceLim() + priceRabicZica() + izradaPoKomadu;
+  const prostorPoKomadu = 0.6 * materijalSaRadom;
+
   const handleCalculate = (e) => {
     e.preventDefault();
+    
 
     // tu ide finalni izracun
     const calculateResult =
@@ -80,7 +84,7 @@ const FramedFilterForm = () => {
   return (
     <>
       <form
-        className="bg-white shadow-md rounded-lg p-11 flex flex-col justify-center items-center flex-grow"
+        className="bg-white shadow-md rounded-lg p-11 pb-4 flex flex-col justify-center items-center flex-grow"
         onSubmit={handleCalculate}
       >
         <div className="mb-4">
