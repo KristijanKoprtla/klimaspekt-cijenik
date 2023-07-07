@@ -2,3 +2,36 @@
 @tailwind components;
 @tailwind utilities;
 
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+}
+
+.spinner-4 {
+  width: 35px;
+  aspect-ratio: 1;
+  display: grid;
+  animation: s4 4s infinite;
+}
+.spinner-4::before,
+.spinner-4::after {
+  content: "";
+  grid-area: 1/1;
+  border: 8px solid;
+  border-radius: 50%;
+  border-color: #fb1818 #fb1818 blue blue;
+  mix-blend-mode: darken;
+  animation: s4 1s infinite linear;
+}
+.spinner-4::after {
+  border-color: white white white white;
+  animation-direction: reverse;
+}
+
+@keyframes s4 {
+  100% {
+    transform: rotate(1turn);
+  }
+}
