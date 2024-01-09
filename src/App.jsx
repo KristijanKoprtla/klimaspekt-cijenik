@@ -14,6 +14,8 @@ function App() {
     setShowBag(false);
   };
 
+  const currentYear = new Date().getFullYear();
+
   // Moram urediti malo spanove u inputu
   return (
     <div className="flex flex-col  h-screen">
@@ -32,7 +34,7 @@ function App() {
       {showBag ? <FramedFilterForm /> : <BagFilterForm />}
 
       <p className="p-5 text-gray-900 bg-white text-center font-light">
-        &copy;2023 Kristijan Koprtla. All Rights Reserved.
+        &copy;{currentYear} Kristijan Koprtla. All Rights Reserved.
       </p>
     </div>
   );
