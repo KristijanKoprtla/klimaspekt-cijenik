@@ -32,7 +32,7 @@ function App() {
       {showBag ? <FramedFilterForm /> : <BagFilterForm />}
 
       <p className="p-5 text-gray-900 bg-white text-center font-light">
-        &copy;2023 Kristijan Koprtla. All Rights Reserved.
+        &copy;2024 Kristijan Koprtla. All Rights Reserved.
       </p>
     </div>
   );
